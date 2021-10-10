@@ -9,15 +9,15 @@ def invoice_writer(name, address, phone, date, items):
     worksheet = workbook.add_worksheet()
 
     info_format = workbook.add_format({
-        'align': 'center',
+        'align': 'left',
         'valign': 'center',
-        'font_size': 18,
+        'font_size': 16,
         'font_color': '#003366'
     })
     c_format = workbook.add_format({
         'align': 'center',
         'valign': 'center',
-        'font_size': 35,
+        'font_size': 25,
         'font_color': '#003366'
     })
     
@@ -34,7 +34,6 @@ def invoice_writer(name, address, phone, date, items):
         'border_color': '#003366'
     })
 
-    worksheet.merge_range('B1:H1', 'សាលាសាយប័រ', c_format)
     worksheet.merge_range('B2:H2', 'SalaCyber CO.,LTD', c_format)
 
     worksheet.merge_range('B3:H3', 'Address: ', info_format)
@@ -45,7 +44,7 @@ def invoice_writer(name, address, phone, date, items):
     worksheet.merge_range('B8:H8', 'Invoice', workbook.add_format({
         'align': 'center',
         'valign': 'center',
-        'font_size': 35,
+        'font_size': 25,
         'font_color': '#FFFFFF',
         'bg_color': '#003366'
     }))
@@ -74,7 +73,7 @@ def invoice_writer(name, address, phone, date, items):
         'font_color': '#003366',
     }))
 
-    worksheet.merge_range('B12:12', 'Phone:', workbook.add_format({
+    worksheet.merge_range('B12:C12', 'Phone:', workbook.add_format({
         'align': 'left',
         'font_size': 14,
         'font_color': '#003366',
@@ -124,8 +123,8 @@ def invoice_writer(name, address, phone, date, items):
         worksheet.write(f'B{i + 15}', i + 1)
         worksheet.merge_range(f'C{i+15}:D{i+15}', item['description'], content_merge_format)
         worksheet.merge_range(f'F{i+15}:G{i+15}', item['unit_price'], content_merge_format)
-        worksheet.write(f'E{i+9}', item['quantity'], text_format)
-        worksheet.write(f'H{i+9}', item['amount'], text_format)
+        worksheet.write(f'E{i+15}', item['quantity'], text_format)
+        worksheet.write(f'H{i+15}', item['amount'], text_format)
     
     worksheet.merge_range(f'B{len(items) + 15}:G{len(items) + 15}', 'Total in USD', workbook.add_format({
         'align': 'right',
