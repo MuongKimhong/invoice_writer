@@ -10,7 +10,7 @@ def invoice_writer(name, address, phone, date, items):
 
     info_format = workbook.add_format({
         'align': 'left',
-        'valign': 'center',
+        'valign': 'left',
         'font_size': 16,
         'font_color': '#003366'
     })
@@ -120,7 +120,7 @@ def invoice_writer(name, address, phone, date, items):
     for (i, item) in enumerate(items):
         total_price = total_price + item['amount']
 
-        worksheet.write(f'B{i + 15}', i + 1)
+        worksheet.write(f'B{i + 15}', i + 1, text_format)
         worksheet.merge_range(f'C{i+15}:D{i+15}', item['description'], content_merge_format)
         worksheet.merge_range(f'F{i+15}:G{i+15}', item['unit_price'], content_merge_format)
         worksheet.write(f'E{i+15}', item['quantity'], text_format)
